@@ -87,3 +87,7 @@ The Ada port is currently being planned.
 ## Dependencies ##
 
 Each port of ByteBauble is designed to only require the language's standard library (C++: C++11+ STL - Ada: Ada packages). 
+
+## Limitations ##
+
+The C++ version of ByteBauble currently works with any slightly modern (4.3+) version of GCC/MinGW, as well as MSVC. Support for other compilers is being worked on.

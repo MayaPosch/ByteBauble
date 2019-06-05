@@ -48,7 +48,7 @@ int main() {
 	std::cout << "[2c] Result: 0x" << std::hex << resVal64 << ", 0x" << resVal64a << std::endl;
 	
 	// Set to LE, pass in BE values (16, 32 & 64 bit).
-	bb.setGlobalEndianness(BB_BE);
+	bb.setGlobalEndianness(BB_LE);
 	resVal16 = bb.toGlobal(testValue16, BB_LE);
 	resVal16a = bb.toGlobal(testValue16, BB_BE);
 	

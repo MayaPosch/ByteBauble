@@ -44,7 +44,7 @@ C++ demonstration application (provided in the source):
 		std::cout << "[2c] Result: 0x" << std::hex << resVal64 << ", 0x" << resVal64a << std::endl;
 		
 		// Set to LE, pass in BE values (16, 32 & 64 bit).
-		bb.setGlobalEndianness(BB_BE);
+		bb.setGlobalEndianness(BB_LE);
 		resVal16 = bb.toGlobal(testValue16, BB_LE);
 		resVal16a = bb.toGlobal(testValue16, BB_BE);
 		
@@ -72,9 +72,9 @@ This produces the following output:
 	[2a] Result: 0x201, 0x102
 	[2b] Result: 0x4030201, 0x1020304
 	[2c] Result: 0xc0b0a0804030201, 0x1020304080a0b0c
-	[3a] Result: 0x201, 0x102
-	[3b] Result: 0x4030201, 0x1020304
-	[3c] Result: 0xc0b0a0804030201, 0x1020304080a0b0c
+	[3a] Result: 0x102, 0x201
+	[3b] Result: 0x1020304, 0x4030201
+	[3c] Result: 0x1020304080a0b0c, 0xc0b0a0804030201
 
 
 ## C++ & Ada version status ##

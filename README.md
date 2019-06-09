@@ -5,6 +5,7 @@ This is a small library containing a number of utility methods for handling endi
 At this point it supports:
 
 * Converting to a preset endianness (BE/LE).
+* Converting to the host's endianness, with automatic host endianness detection.
 
 
 C++ demonstration application (provided in the source):
@@ -60,14 +61,31 @@ C++ demonstration application (provided in the source):
 		
 		std::cout << "[3c] Result: 0x" << std::hex << resVal64 << ", 0x" << resVal64a << std::endl;
 		
+		// Convert to host endianness. This test's output will vary depending on the CPU.
+		resVal16 = bb.toHost(testValue16, BB_LE);
+		resVal16a = bb.toHost(testValue16, BB_BE);
+		
+		std::cout << "[4a] Result: 0x" << std::hex << resVal16 << ", 0x" << resVal16a << std::endl;
+		
+		resVal32 = bb.toHost(testValue32, BB_LE);
+		resVal32a = bb.toHost(testValue32, BB_BE);
+		
+		std::cout << "[4b] Result: 0x" << std::hex << resVal32 << ", 0x" << resVal32a << std::endl;
+		
+		resVal64 = bb.toHost(testValue64, BB_LE);
+		resVal64a = bb.toHost(testValue64, BB_BE);
+		
+		std::cout << "[4c] Result: 0x" << std::hex << resVal64 << ", 0x" << resVal64a << std::endl;
+		
 		
 		return 0;
 	}
 
-This produces the following output:
+This produces the following output on an x86_64 (Intel) system:
 
 
 	$ ./api_test.exe
+	Detected Host Little Endian.
 	[1] Result: 0x4030201
 	[2a] Result: 0x201, 0x102
 	[2b] Result: 0x4030201, 0x1020304
@@ -75,6 +93,10 @@ This produces the following output:
 	[3a] Result: 0x102, 0x201
 	[3b] Result: 0x1020304, 0x4030201
 	[3c] Result: 0x1020304080a0b0c, 0xc0b0a0804030201
+	[4a] Result: 0x102, 0x201
+	[4b] Result: 0x1020304, 0x4030201
+	[4c] Result: 0x1020304080a0b0c, 0xc0b0a0804030201
+
 
 
 ## C++ & Ada version status ##

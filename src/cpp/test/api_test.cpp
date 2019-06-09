@@ -64,6 +64,21 @@ int main() {
 	
 	std::cout << "[3c] Result: 0x" << std::hex << resVal64 << ", 0x" << resVal64a << std::endl;
 	
+	// Convert to host endianness. This test's output will vary depending on the CPU.
+	resVal16 = bb.toHost(testValue16, BB_LE);
+	resVal16a = bb.toHost(testValue16, BB_BE);
+	
+	std::cout << "[4a] Result: 0x" << std::hex << resVal16 << ", 0x" << resVal16a << std::endl;
+	
+	resVal32 = bb.toHost(testValue32, BB_LE);
+	resVal32a = bb.toHost(testValue32, BB_BE);
+	
+	std::cout << "[4b] Result: 0x" << std::hex << resVal32 << ", 0x" << resVal32a << std::endl;
+	
+	resVal64 = bb.toHost(testValue64, BB_LE);
+	resVal64a = bb.toHost(testValue64, BB_BE);
+	
+	std::cout << "[4c] Result: 0x" << std::hex << resVal64 << ", 0x" << resVal64a << std::endl;
 	
 	return 0;
 }

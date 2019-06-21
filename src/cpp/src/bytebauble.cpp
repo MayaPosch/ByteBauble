@@ -44,6 +44,40 @@ void ByteBauble::detectHostEndian() {
 }
 
 
+// --- READ PACKED INT ---
+// Packed integer format that uses the MSB of each byte to indicate that another byte follows.
+// This method supports the input of a single unsigned 32-bit integer.
+// Second parameter and output is a 32-bit integer, of which at most 28 bits can contain a value from the 
+// packed integer.
+// Return value is the number of bytes in the packed integer.
+uint32_t ByteBauble::readPackedInt(uint32_t packed, uint32_t &output) {
+	// Check the special bits while copying the data bits.
+	output = 0;
+	int idx = 0; 	// Index into output integer.
+	int src = 0; 	// Index into input packed integer.
+	int i;
+	for (i = 0; i < 4; ++i) {
+		// Copy data bits of current byte.
+		for (int j = 0; j < 7; ++j) {
+			if ((packed >> src++) & 1UL) {
+				output |= (1UL << idx++);
+			}
+			else {
+				output &= ~(1UL << idx++);
+			}
+		}
+		
+		// Check for presence of follow-up byte.
+		if (!((packed >> src++) & 1UL)) {
+			// Not found, we're done.
+			break;
+		}
+	}
+	
+	return i + 1;
+}
+
+
 /* void setEndianness(BBEndianness end);
 void setBytes(void* bytes);
 void setBytes(void* bytes, BBEndianness end);

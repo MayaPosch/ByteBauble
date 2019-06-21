@@ -37,10 +37,12 @@ public:
 	
 	void detectHostEndian();
 	void setEndianness(BBEndianness end);
-	void setBytes(void* bytes);
-	void setBytes(void* bytes, BBEndianness end);
-	void* getBytes();
-	void* getBytes(BBEndianness end);
+	//void setBytes(void* bytes);
+	//void setBytes(void* bytes, BBEndianness end);
+	//void* getBytes();
+	//void* getBytes(BBEndianness end);
+	
+	static uint32_t readPackedInt(uint32_t packed, uint32_t &output);
 	
 	void setGlobalEndianness(BBEndianness end) { globalEndian = end; }
 	

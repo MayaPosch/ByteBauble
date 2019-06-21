@@ -6,6 +6,7 @@ At this point it supports:
 
 * Converting to a preset endianness (BE/LE).
 * Converting to the host's endianness, with automatic host endianness detection.
+* Extracting simple packed integers (7:1 data/special bit, up to 32-bits).
 
 
 C++ demonstration application (provided in the source):
@@ -103,7 +104,7 @@ This produces the following output on an x86_64 (Intel) system:
 
 The C++ library is currently in progress, but contains working code. Feel free to suggest additional features and offer PRs.
 
-The Ada port is currently being planned.
+The Ada port is currently in progress.
 
 
 ## Dependencies ##

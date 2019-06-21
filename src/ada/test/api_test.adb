@@ -11,6 +11,11 @@
 -- 2019/06/10, Maya Posch
 
 
+with Ada.Text_IO;
+use Ada.Text_IO;
+
+with ByteBauble;
+use ByteBauble;
 
 procedure Main is
 	-- Create ByteBauble instance, perform API operations.
@@ -27,6 +32,12 @@ begin:
 	
 	-- Default global: should return LE result.
 	resVal := bb.toGlobal(testValue32, BB_BE); -- Assume it's BE.
+	
+	Put("[1] Result: 0x");
+	Put(resVal, 16);
+	Put_line;
+	
+	-- Set new global (BE), should return BE result.
 	
 end Main;
 	

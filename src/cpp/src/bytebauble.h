@@ -36,13 +36,15 @@ public:
 	ByteBauble();
 	
 	void detectHostEndian();
-	void setEndianness(BBEndianness end);
+	BBEndianness getHostEndian() { return hostEndian; }
+	//void setEndianness(BBEndianness end);
 	//void setBytes(void* bytes);
 	//void setBytes(void* bytes, BBEndianness end);
 	//void* getBytes();
 	//void* getBytes(BBEndianness end);
 	
 	static uint32_t readPackedInt(uint32_t packed, uint32_t &output);
+	static uint32_t writePackedInt(uint32_t integer, uint32_t &output);
 	
 	void setGlobalEndianness(BBEndianness end) { globalEndian = end; }
 	

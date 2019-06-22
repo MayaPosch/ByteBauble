@@ -78,6 +78,45 @@ uint32_t ByteBauble::readPackedInt(uint32_t packed, uint32_t &output) {
 }
 
 
+// --- WRITE PACKED INT ---
+uint32_t ByteBauble::writePackedInt(uint32_t integer, uint32_t &output) {
+	// First determine how many bytes we will be needing.
+	uint32_t totalBytes = 0;
+	if (integer <= 0x80) { totalBytes = 1; }
+	else if (integer <= 0x4000) { totalBytes = 2; }
+	else if (integer <= 0x200000) { totalBytes = 3; }
+	else if (integer <= 0x10000000) { totalBytes = 4; }
+	else {
+		// Out of range, return error.
+		return 0;
+	}
+	
+	// Copy the source data bits to as many packed bytes as needed.
+	output = 0;
+	int idx = 0;	// Index into packed (output) integer.
+	int src = 0; 	// Index into source integer.
+	for (int i = 0; i < totalBytes; ++i) {
+		//
+		for (int j = 0; j < 7; ++j) {
+			if ((integer >> src++) & 1UL) {
+				output |= (1UL << idx++);
+			}
+			else {
+				//output &= ~(1UL << idx++);
+				idx++;
+			}
+		}
+			
+		// Check for follow-up byte and set if necessary.
+		if ((i + 1) < totalBytes) {
+			output |= (1UL << idx++);
+		}
+	}
+	
+	return totalBytes;
+}
+
+
 /* void setEndianness(BBEndianness end);
 void setBytes(void* bytes);
 void setBytes(void* bytes, BBEndianness end);

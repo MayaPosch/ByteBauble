@@ -13,6 +13,10 @@
 */
 
 
+#ifndef BYTEBAUBLE_H
+#define BYTEBAUBLE_H
+
+
 //#include <algorithm>
 #include <climits>
 #include <cstdint>
@@ -132,3 +136,6 @@ public:
 		return 0;
 	}
 };
+
+
+#endif

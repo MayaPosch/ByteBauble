@@ -65,7 +65,7 @@ public:
 		// Perform the conversion.
 		// Flip the bytes, so that the MSB and LSB are switched.
 		// Compiler intrinsics in GCC/MinGW exist since ~4.3, for MSVC
-		size_t bytesize = sizeof(in);
+		std::size_t bytesize = sizeof(in);
 #if defined(__GNUC__) || defined(__MINGW32__) || defined(__MINGW64__)
 		if (bytesize == 2) {
 			return __builtin_bswap16(in);
@@ -108,7 +108,7 @@ public:
 		// Perform the conversion.
 		// Flip the bytes, so that the MSB and LSB are switched.
 		// Compiler intrinsics in GCC/MinGW exist since ~4.3, for MSVC
-		size_t bytesize = sizeof(in);
+		std::size_t bytesize = sizeof(in);
 #if defined(__GNUC__) || defined(__MINGW32__) || defined(__MINGW64__)
 		if (bytesize == 2) {
 			return __builtin_bswap16(in);

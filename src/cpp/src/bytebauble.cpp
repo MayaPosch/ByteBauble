@@ -63,7 +63,8 @@ uint32_t ByteBauble::readPackedInt(uint32_t packed, uint32_t &output) {
 				output |= (1UL << idx++);
 			}
 			else {
-				output &= ~(1UL << idx++);
+				//output &= ~(1UL << idx++);
+				idx++;
 			}
 		}
 		

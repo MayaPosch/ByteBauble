@@ -1,2 +1,6 @@
 *.exe
 *_test
+lib/
+bin/
+obj/
+*.o

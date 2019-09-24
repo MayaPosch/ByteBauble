@@ -1,15 +1,61 @@
 # ByteBauble #
 
-This is a small library containing a number of utility methods for handling endianness and other common byte & bit-related operations.
+This is a small library containing a number of utility methods for handling endianness and other common byte & bit-related operations. The C++ version comes in at 144 lines of code:
+
+	-------------------------------------------------------------------------------
+	Language                     files          blank        comment           code
+	-------------------------------------------------------------------------------
+	C/C++ Header                     1             26             34             81
+	C++                              1             22             40             63
+	-------------------------------------------------------------------------------
+	SUM:                             2             48             74            144
+	-------------------------------------------------------------------------------
+
+
 
 At this point it supports:
 
-* Converting to a preset endianness (BE/LE).
+* Converting to a preset endianness (BE/LE) with MSVC & GCC compilers.
 * Converting to the host's endianness, with automatic host endianness detection.
 * Extracting simple packed integers (7:1 data/special bit, up to 32-bits).
 
+## API ##
 
-C++ demonstration application (provided in the source):
+	ByteBauble();
+
+	void detectHostEndian();
+
+	BBEndianness getHostEndian();
+
+	static uint32_t readPackedInt(uint32_t packed, uint32_t &output);
+
+	static uint32_t writePackedInt(uint32_t integer, uint32_t &output);
+
+	void setGlobalEndianness(BBEndianness end);
+ 
+	template <typename T>
+	T toGlobal(T in, BBEndianness end);
+
+	template <typename T>
+	T toHost(T in, BBEndianness end);
+
+## Building ##
+
+No external dependencies are required, only a recent compiler (C++11 for the C++ version).
+
+One can build the test applications and library (under `src/cpp/lib/`) by executing `make` in the 'src/cpp' folder, or append it:
+
+	$ make test
+
+This builds the library and test applications.
+
+	$ make lib
+
+This builds just the library.
+
+## Example ##
+
+C++ demonstration application (provided in the project):
 
 	#include "../src/bytebauble.h"
 

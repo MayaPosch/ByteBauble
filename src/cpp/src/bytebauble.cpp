@@ -116,10 +116,3 @@ uint32_t ByteBauble::writePackedInt(uint32_t integer, uint32_t &output) {
 	
 	return totalBytes;
 }
-
-
-/* void setEndianness(BBEndianness end);
-void setBytes(void* bytes);
-void setBytes(void* bytes, BBEndianness end);
-void* getBytes();
-void* getBytes(BBEndianness end); */
